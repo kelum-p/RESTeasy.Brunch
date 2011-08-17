@@ -1,0 +1,1 @@
+class exports.Specification extends Backbone.Model

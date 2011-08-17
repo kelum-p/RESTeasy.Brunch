@@ -1,8 +1,14 @@
-window.app = {}
-app.routers = {}
-app.models = {}
-app.collections = {}
-app.views = {}
+window.app =
+	routers: {}
+	models: {}
+	collections: {}
+	views: {}
+	
+	data:
+		specifications: null
+
+	config:
+		hostname: "http://127.0.0.1:8000"
 
 MainRouter = require('routers/main_router').MainRouter
 HomeView = require('views/home_view').HomeView
@@ -12,6 +18,7 @@ $(document).ready ->
   app.initialize = ->
     app.routers.main = new MainRouter()
     app.views.home = new HomeView()
-    app.routers.main.navigate 'home', true if Backbone.history.getFragment() is ''
+		
+    #app.routers.main.navigate 'home', true if Backbone.history.getFragment() is ''
   app.initialize()
   Backbone.history.start()
