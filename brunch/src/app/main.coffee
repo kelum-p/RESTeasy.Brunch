@@ -11,13 +11,20 @@ window.app =
 		hostname: "http://127.0.0.1:8000"
 
 MainRouter = require('routers/main_router').MainRouter
-HomeView = require('views/home_view').HomeView
+IndexView = require('views/index').IndexView
+SpecificationsView = require('views/specifications').SpecificationsView
+
+Specifications = require('collections/specifications').Specifications
 
 # app bootstrapping on document ready
 $(document).ready ->
   app.initialize = ->
     app.routers.main = new MainRouter()
-    app.views.home = new HomeView()
+		app.views.index = new IndexView()
+		app.views.specifications = new SpecificationsView()
+		
+		# initialize collections
+		app.collections.specifications = new Specifications()
 		
     #app.routers.main.navigate 'home', true if Backbone.history.getFragment() is ''
   app.initialize()

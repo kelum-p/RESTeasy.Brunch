@@ -1,17 +1,14 @@
-Specifications = require('collections/specifications').Specifications
-
 class exports.MainRouter extends Backbone.Router
 	routes:
 		'': 'index'
+		'specifications': 'specifications'
 		
-	index: ->
-		app.collections.specifications = new Specifications()
+	index: ->		
+		$('body').html app.views.index.render().el
+	
+	specifications: ->
 		app.collections.specifications.fetch
 			success: ->
-				alert "yay"
+				$('body').html app.views.specifications.render().el
 			error: ->
-				alert "nay"
-				
-  #home: ->
-		#alert "home"
-		#$('body').html app.views.home.render().el
+				console.log "nay"
