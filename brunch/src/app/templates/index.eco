@@ -1,0 +1,9 @@
+<div id="index">	
+	<img src="res/img/tabs.gif" />
+	<h1><%= @view_id %></h1>
+	<ol id="toc">
+		<li class="current"><a href="#specs"> Specifications </a></li>
+		<li> Item 2 </li>
+		<li> Item 3 </li>
+	</ol>
+</div>

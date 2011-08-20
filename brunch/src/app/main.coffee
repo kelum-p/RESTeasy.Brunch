@@ -13,6 +13,8 @@ window.app =
 MainRouter = require('routers/main_router').MainRouter
 IndexView = require('views/index').IndexView
 SpecificationsView = require('views/specifications').SpecificationsView
+CreateSpecificationView = 
+	require('views/create_specification').CreateSpecificationView
 
 Specifications = require('collections/specifications').Specifications
 
@@ -22,6 +24,7 @@ $(document).ready ->
     app.routers.main = new MainRouter()
 		app.views.index = new IndexView()
 		app.views.specifications = new SpecificationsView()
+		app.views.create_specification = new CreateSpecificationView()
 		
 		# initialize collections
 		app.collections.specifications = new Specifications()

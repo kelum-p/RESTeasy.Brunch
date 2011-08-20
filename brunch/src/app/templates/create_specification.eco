@@ -1,0 +1,12 @@
+<div id="create_specification_view">
+	<h1> Create a Specification </h1>
+	<form name="create_specification_form">
+		Name:
+		<input type="text" name="name" value="">
+		<br />
+		Version:
+		<input type="text" name="version" value="">
+		<br />
+		<input id="create" type="button" name="create" value="Create">		
+	</form>
+</div>

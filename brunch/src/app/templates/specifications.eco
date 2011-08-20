@@ -1,0 +1,17 @@
+<div id="specifications_view">
+
+	<ol>
+		<% for specification in @specifications: %>
+			<li> <%= specification.get('name') %> </li>
+				<ol>
+					<% for version in specification.get('versions'): %>
+						<li> <%= version %> </li>
+					<% end %>
+				</ol>
+		<% end %>
+	</ol>
+	
+	<ul>
+		
+			
+</div>
