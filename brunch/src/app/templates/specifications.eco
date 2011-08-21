@@ -1,17 +1,16 @@
 <div id="specifications_view">
-
-	<ol>
-		<% for specification in @specifications: %>
-			<li> <%= specification.get('name') %> </li>
-				<ol>
-					<% for version in specification.get('versions'): %>
-						<li> <%= version %> </li>
-					<% end %>
-				</ol>
-		<% end %>
-	</ol>
-	
-	<ul>
-		
-			
+	<% if @specifications.length > 0: %>
+		<ol>
+			<% for specification in @specifications: %>
+				<li> <%= specification.get('name') %> </li>
+					<ol>
+						<% for version in specification.get('versions'): %>
+							<li> <%= version %> </li>
+						<% end %>
+					</ol>
+			<% end %>
+		</ol>
+	<% else: %>
+		<p> There are no specification defined </p>
+	<% end %>		
 </div>

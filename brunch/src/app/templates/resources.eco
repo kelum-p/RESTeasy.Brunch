@@ -1,0 +1,11 @@
+<div id="resources">
+	<h1> Resources of <%= @specification %> (<%= @version %>)</h1>
+		<% if @resources.length > 0: %>
+			<ol>
+				<% for resource in @resources: %>
+					<li> <%= resource.get('url') %> </li>
+				<% end %>
+		<% else: %>
+			<p> No resources defined </p>
+		<% end %>
+</div>

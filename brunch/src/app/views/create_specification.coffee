@@ -11,6 +11,9 @@ class exports.CreateSpecificationView extends Backbone.View
 		$(@.el).html CreateSpecificationTemplate()
 		@
 	
+	send_feedback: (message) ->
+		$("#feedback").get(0).textContent = message
+		
 	create_specification: ->
 		form = $("#create").get(0).form
 		name = form.name.value
@@ -18,7 +21,11 @@ class exports.CreateSpecificationView extends Backbone.View
 		
 		specification = new Specification() 
 		specification.save name: name, version: version,
-			success: ->
-		    console.log "yay"
-		  error: (model, response) ->
-	    	console.log "nay #{response}"
+			success: (model, response) => 
+				name = model.get('name')
+				version = model.get('version')
+				@send_feedback("#{name} (#{version}) saved successfully")
+			error: (model, response) =>
+				@send_feedback("Unable to save the specification")
+	
+	

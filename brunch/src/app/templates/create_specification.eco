@@ -9,4 +9,5 @@
 		<br />
 		<input id="create" type="button" name="create" value="Create">		
 	</form>
+	<p id="feedback"> Status: </p>
 </div>
