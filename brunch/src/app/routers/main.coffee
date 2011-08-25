@@ -43,8 +43,6 @@ class exports.MainRouter extends Backbone.Router
 	handleError: ->
 		
 	renderElement: (element) ->
-		window.test = element
-		console.log "here"
 		$('body').html element
 			
 		
