@@ -3,12 +3,12 @@ Resource = require('models/resource').Resource
 class exports.Resources extends Backbone.Collection
 	model: Resource
 	
-	constructor: (@specification, @version) ->
+	constructor: (@specName, @specVersion) ->
 	
 	url: -> ([
 		app.config.hostname
 		"specifications"
-		@specification
-		@version
+		@specName
+		@specVersion
 		"resources"
 		].join '/')

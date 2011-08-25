@@ -25,8 +25,8 @@ $(document).ready ->
     app.routers.main = new MainRouter()
 		app.views.index = new IndexView()
 		app.views.specifications = new SpecificationsView()
-		app.views.create_specification = new CreateSpecificationView()
-		app.views.resources = new ResourcesView()
+		app.views.createSpecification = new CreateSpecificationView()
+		app.views.resources = {}
 		
 		# initialize collections
 		app.collections.specifications = new Specifications()

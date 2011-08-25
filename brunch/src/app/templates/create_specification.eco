@@ -1,6 +1,6 @@
-<div id="create_specification_view">
+<div id="createSpecificationView">
 	<h1> Create a Specification </h1>
-	<form name="create_specification_form">
+	<form name="createSpecificationForm">
 		Name:
 		<input type="text" name="name" value="">
 		<br />

@@ -1,0 +1,8 @@
+<div id="createResource">
+	<h1> Create Resource for <config> (<version>) </h1>
+	<form id="createResourceForm">
+		URL:
+		<input type="text" name="url" value="" > <br />
+		<input id="create" type-"button" name="create" value="Create">
+	</form>
+</div>

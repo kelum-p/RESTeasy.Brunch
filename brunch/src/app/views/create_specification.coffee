@@ -2,19 +2,19 @@ CreateSpecificationTemplate = require('templates/create_specification')
 Specification = require('models/specification').Specification
 
 class exports.CreateSpecificationView extends Backbone.View
-	id: "create_specification_view"
+	id: "createSpecificationView"
 	
 	events:
-		"click #create" : "create_specification"
+		"click #create" : "createSpecification"
 	
 	render: ->
 		$(@.el).html CreateSpecificationTemplate()
 		@
 	
-	send_feedback: (message) ->
+	sendFeedback: (message) ->
 		$("#feedback").get(0).textContent = message
 		
-	create_specification: ->
+	createSpecification: ->
 		form = $("#create").get(0).form
 		name = form.name.value
 		version = form.version.value
@@ -24,8 +24,8 @@ class exports.CreateSpecificationView extends Backbone.View
 			success: (model, response) => 
 				name = model.get('name')
 				version = model.get('version')
-				@send_feedback("#{name} (#{version}) saved successfully")
+				@sendFeedback("#{name} (#{version}) saved successfully")
 			error: (model, response) =>
-				@send_feedback("Unable to save the specification")
+				@sendFeedback("Unable to save the specification")
 	
 	

@@ -1,9 +1,12 @@
+Resources = require('collections/resources').Resources
+ResourcesView = require('views/resources').ResourcesView
+
 class exports.MainRouter extends Backbone.Router
 	routes:
 		'': 'index'
 		'specifications': 'specifications'
-		'create_specification': 'create_specification'
-		':specification/:version/resources': 'resources'
+		'createSpecification': 'createSpecification'
+		':specName/:specVersion/resources': 'resources'
 		
 	index: ->		
 		$('body').html app.views.index.render().el
@@ -11,34 +14,28 @@ class exports.MainRouter extends Backbone.Router
 	specifications: ->
 		app.collections.specifications.fetch
 			success: =>
-				@render_element app.views.specifications.render().el
+				@renderElement app.views.specifications.render().el
 			error: =>
-				@handle_error()
-				@render_element app.views.specifications.render().el
+				@handleError()
+				@renderElement app.views.specifications.render().el
 				
-	create_specification: ->
-		@render_element app.views.create_specification.render().el
+	createSpecification: ->
+		@renderElement app.views.createSpecification.render().el
 		
-	resources: (specification, version) ->
-		resources = app.collections.resources["#{specification}#{version}"]
-		
-		unless resources?
-			Resources = require('collections/resources').Resources
-			resources = new Resources(specification, version)
-			app.collections.resources["#{specification}#{version}"] = resources
-			
-		app.views.resources.set_specification_info specification, version
+	resources: (specName, specVersion) ->
+		resources = new Resources(specName, specVersion)
 		resources.fetch
-			success: (collection, response) =>
-				app.views.resources.set_resources(collection)
-				@render_element app.views.resources.render().el
+			success: (resources) =>
+				resourcesView = new ResourcesView specName, specVersion, resources
+				@renderElement resourcesView.render().el
 			error: =>
-				@handle_error()
-				@render_element app.views.resources.render().el
+				@handleError()
+				resourcesView = new ResourcesView specName, specVersion
+				@renderElement resourcesView.render().el
 	
-	handle_error: ->
+	handleError: ->
 		
-	render_element: (element) ->
+	renderElement: (element) ->
 		$('body').html element
 			
 		

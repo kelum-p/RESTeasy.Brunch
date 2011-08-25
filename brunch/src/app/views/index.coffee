@@ -1,9 +1,9 @@
 IndexTemplate = require('templates/index')
 
 class exports.IndexView extends Backbone.View
-	id: 'index_view'
+	id: 'indexView'
 	
 	render: ->
-		$(@.el).html IndexTemplate({view_id: "work"})
+		$(@.el).html IndexTemplate({viewId: "work"})
 		@
 	

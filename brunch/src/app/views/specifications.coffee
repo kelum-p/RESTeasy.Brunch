@@ -1,7 +1,7 @@
 SpecifcationsTemplate = require('templates/specifications')
 
 class exports.SpecificationsView extends Backbone.View
-	id: 'specifications_view'
+	id: 'specificationsView'
 	
 	render: ->
 		$(@.el).html SpecifcationsTemplate(

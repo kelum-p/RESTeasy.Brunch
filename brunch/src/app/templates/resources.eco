@@ -1,8 +1,8 @@
 <div id="resources">
-	<h1> Resources of <%= @specification %> (<%= @version %>)</h1>
+	<h1> Resources of <%= @specName %> (<%= @specVersion %>)</h1>
 		<% if @resources.length > 0: %>
 			<ol>
-				<% for resource in @resources: %>
+				<% for resource in @resources.models: %>
 					<li> <%= resource.get('url') %> </li>
 				<% end %>
 		<% else: %>

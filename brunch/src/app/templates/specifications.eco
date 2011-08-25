@@ -1,4 +1,4 @@
-<div id="specifications_view">
+<div id="specificationsView">
 	<% if @specifications.length > 0: %>
 		<ol>
 			<% for specification in @specifications: %>
