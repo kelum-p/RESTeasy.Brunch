@@ -5,4 +5,5 @@
 		<input type="text" name="url" value="" > <br />
 		<input id="create" type="button" name="create" value="Create">
 	</form>
+	<p id="feedback" />
 </div>

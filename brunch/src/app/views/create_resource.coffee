@@ -1,12 +1,10 @@
 CreateResourceTemplate = require('templates/create_resource')
 Resource = require('models/resource').Resource
+CreateModelBaseView = require('views/create_model_base').CreateModelBaseView
 
-class exports.CreateResourceView extends Backbone.View
+class exports.CreateResourceView extends CreateModelBaseView
 	id: "createResourceView"
 	
-	events:
-		"click #create": "createResource"
-		
 	constructor: (@specName, @specVersion) ->
 		super()
 	
@@ -16,15 +14,15 @@ class exports.CreateResourceView extends Backbone.View
 			specVersion: @specVersion)
 		@
 		
-	createResource: ->
+	create: ->
+		@createResource()
+		
+	createResource: ->		
 		url = $('#createResourceForm input[name="url"]').val()
 		
 		resource = new Resource()
-		resource.save specification:@specName, version:@specVersion, url:url,
-			success: ->
-				console.log "yay"
-			error: ->
-				console.log "nay"
-		
-		
-	
+		resource.save specName:@specName, specVersion:@specVersion, url:url,      
+			success: =>
+				@sendFeedback("Resource: #{url} saved successfully")
+			error: (model, response) =>
+				@sendFeedback("Unable to save the resource #{url}")

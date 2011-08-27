@@ -1,6 +1,6 @@
 <div id="createSpecificationView">
 	<h1> Create a Specification </h1>
-	<form name="createSpecificationForm">
+	<form id="createSpecificationForm">
 		Name:
 		<input type="text" name="name" value="">
 		<br />
@@ -9,5 +9,5 @@
 		<br />
 		<input id="create" type="button" name="create" value="Create">		
 	</form>
-	<p id="feedback"> Status: </p>
+	<p id="feedback" />
 </div>
