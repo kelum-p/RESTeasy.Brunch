@@ -1,5 +1,6 @@
 <div id="resources">
 	<h1> Resources of <%= @specName %> (<%= @specVersion %>)</h1>
+		<%- "<a href=\"##{@specName}/#{@specVersion}/createResource\"> Create resource </a>" %>
 		<% if @resources.length > 0: %>
 			<ol>
 				<% for resource in @resources.models: %>

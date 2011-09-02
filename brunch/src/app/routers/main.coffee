@@ -10,6 +10,7 @@ class exports.MainRouter extends Backbone.Router
 		'createSpecification': 'createSpecification'
 		':specName/:specVersion/resources': 'resources'
 		':specName/:specVersion/createResource': 'createResource'
+		'resource/:resourceId': 'resource'
 		
 	index: ->		
 		$('body').html app.views.index.render().el
@@ -39,6 +40,9 @@ class exports.MainRouter extends Backbone.Router
 	createResource: (specName, specVersion) ->
 		createResourceView = new CreateResourceView(specName, specVersion)
 		@renderElement createResourceView.render().el
+	
+	resource: ->
+		
 		
 	handleError: ->
 		

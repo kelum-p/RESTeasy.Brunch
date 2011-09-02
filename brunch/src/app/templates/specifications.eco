@@ -1,16 +1,22 @@
 <div id="specificationsView">
+	<h1> Specifications </h1>
+	
+	<a href='#createSpecification'> Create new specification </a>		
+	
 	<% if @specifications.length > 0: %>
 		<ol>
 			<% for specification in @specifications: %>
 				<li> <%= specification.get('name') %> </li>
 					<ol>
 						<% for version in specification.get('versions'): %>
-							<li> <%= version %> </li>
+							<li> 
+								<%- "<a href=\"##{specification.get('name')}/#{version}/resources\"> #{version} </a>  " %> 
+							</li>						
 						<% end %>
 					</ol>
 			<% end %>
 		</ol>
 	<% else: %>
 		<p> There are no specification defined </p>
-	<% end %>		
+	<% end %>	
 </div>
