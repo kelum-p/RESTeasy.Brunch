@@ -4,7 +4,7 @@
 		<% if @resources.length > 0: %>
 			<ol>
 				<% for resource in @resources.models: %>
-					<li> <%= resource.get('url') %> </li>
+					<li> <%-"<a href=\"#resource/#{resource.get('id')}\"> #{resource.get('url')} </a>" %></li>
 				<% end %>
 		<% else: %>
 			<p> No resources defined </p>

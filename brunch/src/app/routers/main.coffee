@@ -1,7 +1,9 @@
 Resources = require('collections/resources').Resources
+Resource = require('models/resource').Resource
 ResourcesView = require('views/resources').ResourcesView
 CreateResourceView = 
 	require('views/create_resource').CreateResourceView
+ResourceView = require('views/resource').ResourceView
 
 class exports.MainRouter extends Backbone.Router
 	routes:
@@ -27,7 +29,7 @@ class exports.MainRouter extends Backbone.Router
 		@renderElement app.views.createSpecification.render().el
 		
 	resources: (specName, specVersion) ->
-		resources = new Resources(specName, specVersion)
+		resources = new Resources specName, specVersion
 		resources.fetch
 			success: (resources) =>
 				resourcesView = new ResourcesView specName, specVersion, resources
@@ -41,8 +43,14 @@ class exports.MainRouter extends Backbone.Router
 		createResourceView = new CreateResourceView(specName, specVersion)
 		@renderElement createResourceView.render().el
 	
-	resource: ->
-		
+	resource: (resourceId) ->
+	  resource = new Resource resourceId: resourceId
+	  resource.fetch
+	    success: (model) =>
+	      resourceView = new ResourceView(model)
+	      @renderElement resourceView.render().el
+	    error: =>
+	      @_handleError()
 		
 	handleError: ->
 		
