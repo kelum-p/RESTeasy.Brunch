@@ -5,6 +5,8 @@ CreateResourceView =
 	require('views/create_resource').CreateResourceView
 ResourceView = require('views/resource').ResourceView
 
+Elements = require('collections/elements').Elements
+
 class exports.MainRouter extends Backbone.Router
 	routes:
 		'': 'index'
@@ -49,9 +51,21 @@ class exports.MainRouter extends Backbone.Router
 	    success: (model) =>
 	      resourceView = new ResourceView(model)
 	      @renderElement resourceView.render().el
+	      elementsHref = model.get 'elementsHref'
+	      @_renderElements resourceView, elementsHref
 	    error: =>
 	      @_handleError()
-		
+	
+	_renderElements: (view, elementsHref) ->
+	  elements = new Elements elementsHref
+	  elements.fetch
+	    success: (collection) =>
+	      console.log "yes"
+	      #window.test = collection
+	    error: =>
+	      @_handleError()
+	      console.log "nay"
+	  
 	handleError: ->
 		
 	renderElement: (element) ->
