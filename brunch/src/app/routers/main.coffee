@@ -61,12 +61,11 @@ class exports.MainRouter extends Backbone.Router
 	  elements.fetch
 	    success: (collection) =>
 	      console.log "yes"
-	      #window.test = collection
 	    error: =>
 	      @_handleError()
 	      console.log "nay"
 	  
-	handleError: ->
+	_handleError: ->
 		
 	renderElement: (element) ->
 		$('body').html element

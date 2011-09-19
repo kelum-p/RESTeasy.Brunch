@@ -10,33 +10,26 @@ class exports.Elements extends Backbone.Collection
   	app.config.hostname
   	@elementsHref
   	].join '')
-  	
+  	  
   parse: (response) ->
-    window.test = response
-    response
-  ###  
-  parse: (response) ->
-    @_createPropertyHierarchy response
+    @_createElementHierarchy response
 
-  _createPropertyHierarchy: (response) ->
-    if response.properties?
-      @_createRelationships response.properties
+  _createElementHierarchy: (elements) ->
+    models = []
+    for id, element of elements
+      if element.parent?
+        @_assignChildElement elements, id, element.parent
+      models.push element
 
-    response
+    models
+    
+  _assignChildElement: (elements, childId, parentId) ->
+    if elements.hasOwnProperty parentId
+      parentElement = elements[parentId]
+      @_addChild parentElement, childId
 
-  _createRelationships: (properties) ->
-    for id, property of properties
-      if property.parent?
-        @_assignChildProperty properties, id, property.parent
-
-  _assignChildProperty: (properties, childId, parentId) ->
-    if properties.hasOwnProperty parentId
-      parentProperty = properties[parentId]
-      @_addChild parentProperty, childId
-
-  _addChild: (parentProperty, childId) ->
-    if parentProperty.hasOwnProperty 'children'
-      parentProperty.children.push childId
+  _addChild: (parentElement, childId) ->
+    if parentElement.hasOwnProperty 'children'
+      parentElement.children.push childId
     else
-      parentProperty.children = [childId]
-    ###
+      parentElement.children = [childId]
