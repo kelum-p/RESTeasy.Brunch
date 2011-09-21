@@ -6,6 +6,7 @@ CreateResourceView =
 ResourceView = require('views/resource').ResourceView
 
 Elements = require('collections/elements').Elements
+ElementsView = require('views/elements').ElementsView
 
 class exports.MainRouter extends Backbone.Router
 	routes:
@@ -60,10 +61,10 @@ class exports.MainRouter extends Backbone.Router
 	  elements = new Elements elementsHref
 	  elements.fetch
 	    success: (collection) =>
-	      console.log "yes"
+	      elementsView = new ElementsView elements: collection
+	      view.renderElements elementsView
 	    error: =>
 	      @_handleError()
-	      console.log "nay"
 	  
 	_handleError: ->
 		

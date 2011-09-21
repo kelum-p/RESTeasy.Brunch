@@ -1,0 +1,7 @@
+<% if @elements.length > 0: %>
+	<ol>
+    <%- @traverseElementHierarchy() %>
+	</ol>
+<% else: %>
+	<p> There are no elements defined </p>
+<% end %>

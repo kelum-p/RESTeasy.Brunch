@@ -1,3 +1,5 @@
 <div id="resource">
 	<h1> <%= @model.get 'url' %> </h1>
+	<div id="elements">
+	</div>
 </div>

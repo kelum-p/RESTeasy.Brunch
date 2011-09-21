@@ -9,5 +9,6 @@ class exports.ResourceView extends Backbone.View
 	render: ->
 		$(@.el).html ResourceTemplate(model: @model)
 		@
-		
 	
+	renderElements: (elementsView) ->
+	  $('#elements').append elementsView.render().el

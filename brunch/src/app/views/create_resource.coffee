@@ -21,7 +21,7 @@ class exports.CreateResourceView extends CreateModelBaseView
 		url = $('#createResourceForm input[name="url"]').val()
 		
 		resource = new Resource()
-		resource.save specName:@specName, specVersion:@specVersion, url:url,      
+		resource.save specName:@specName, specVersion:@specVersion, url:url,
 			success: =>
 				@sendFeedback("Resource: #{url} saved successfully")
 			error: (model, response) =>

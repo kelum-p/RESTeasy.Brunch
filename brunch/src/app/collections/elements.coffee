@@ -10,7 +10,7 @@ class exports.Elements extends Backbone.Collection
   	app.config.hostname
   	@elementsHref
   	].join '')
-  	  
+
   parse: (response) ->
     @_createElementHierarchy response
 
@@ -22,14 +22,14 @@ class exports.Elements extends Backbone.Collection
       models.push element
 
     models
-    
+
   _assignChildElement: (elements, childId, parentId) ->
     if elements.hasOwnProperty parentId
       parentElement = elements[parentId]
       @_addChild parentElement, childId
 
   _addChild: (parentElement, childId) ->
-    if parentElement.hasOwnProperty 'children'
+    if parentElement.children?
       parentElement.children.push childId
     else
       parentElement.children = [childId]
