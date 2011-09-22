@@ -1,6 +1,22 @@
+<% traverseElementHierarchy = (element)  => %>
+  <li> <%= element.get 'name' %> </li>
+  <% if element.has 'children': %>
+    <ol>
+      <% for child in element.get 'children': %>
+        <% childElement = @elements.get child %>
+        <%= traverseElementHierarchy childElement %>
+      <% end %>
+    </ol>
+  <% end %>
+<% end %>
+
 <% if @elements.length > 0: %>
 	<ol>
-    <%- @traverseElementHierarchy() %>
+    <% for element in @elements.models: %>
+      <% unless element.has 'parent': %>
+        <%= traverseElementHierarchy(element) %>
+      <% end %>
+    <% end %>
 	</ol>
 <% else: %>
 	<p> There are no elements defined </p>
