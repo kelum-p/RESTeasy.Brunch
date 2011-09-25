@@ -1,0 +1,22 @@
+<h1> Create Element </h1>
+Resource ID: <%= @resourceId %>
+
+<% if @parentId?: %>
+  <br />
+  Parent Id: <%= @parentId %>
+<% end %>
+
+<br /><br />
+
+<form id="createElementForm">
+  Name:
+  <input type="text" name="name" value="" > <br />
+  Type:
+  <input type="text" name="type" value="" > <br />
+  Required:
+  <input type="text" name="required" value="" > <br />
+  Static:
+  <input type="text" name="static" value="" > <br />
+  <input id="create" type="button" name="create" value="Create">
+</form>
+<p id="feedback" />

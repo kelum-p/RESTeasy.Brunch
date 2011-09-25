@@ -7,6 +7,7 @@ ResourceView = require('views/resource').ResourceView
 
 Elements = require('collections/elements').Elements
 ElementsView = require('views/elements').ElementsView
+CreateElementView = require('views/create_element').CreateElementView
 
 class exports.MainRouter extends Backbone.Router
   routes:
@@ -16,6 +17,8 @@ class exports.MainRouter extends Backbone.Router
     ':specName/:specVersion/resources': 'resources'
     ':specName/:specVersion/createResource': 'createResource'
     'resource/:resourceId': 'resource'
+    ':resourceId/createElement': 'createRootElement'
+    ':resourceId/:parentId/createElement': 'createChildElement'
 
   index: ->
     $('body').html app.views.index.render().el
@@ -57,11 +60,23 @@ class exports.MainRouter extends Backbone.Router
       error: =>
         @_handleError()
 
+  createRootElement: (resourceId) ->
+    createElementView = new CreateElementView resourceId: resourceId
+    @_renderElement createElementView.render().el
+
+  createChildElement: (resourceId, parentId) ->
+    createElementView = new CreateElementView
+      resourceId: resourceId
+      parentId: parentId
+    @_renderElement createElementView.render().el
+
   _renderElements: (view, elementsHref) ->
     elements = new Elements elementsHref
     elements.fetch
       success: (collection) =>
-        elementsView = new ElementsView elements: collection
+        elementsView = new ElementsView 
+          resourceId: view.model.id
+          elements: collection
         view.renderElements elementsView
       error: =>
         @_handleError()

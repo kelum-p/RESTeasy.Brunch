@@ -1,5 +1,10 @@
 class exports.Element extends Backbone.Model
 
+  url: -> ([
+    app.config.hostname
+    "specifications"
+    "element"].join '/')
+
   displayableAttributes: ->
     {
       Required: @get 'required'

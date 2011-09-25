@@ -1,4 +1,11 @@
+<% getCreateRootElementViewHref = () => %>
+  <a href="#<%="#{@resourceId}/createElement"%>"> Create element </a>
+<% end %>
 
+<% getCreateChildElementViewHref = (element) => %>
+    <a href="#<%="#{@resourceId}/#{element.id}/createElement"%>">
+        Create element </a>
+<% end %>
 
 <% showElementData = (element) => %>
   <li> <%= element.get 'name' %> </li>
@@ -11,9 +18,10 @@
       <tr>
     <% end %>
   </table>
+  <%- getCreateChildElementViewHref element %>
 <% end %>
 
-<% traverseElementHierarchy = (element)  => %>
+<% traverseElementHierarchy = (element) => %>
   <%= showElementData element %>
   <% if element.has 'children': %>
     <ol>
@@ -25,14 +33,15 @@
   <% end %>
 <% end %>
 
+<%- getCreateRootElementViewHref() %>
 <% if @elements.length > 0: %>
-	<ol>
+  <ol>
     <% for element in @elements.models: %>
       <% unless element.has 'parent': %>
         <%= traverseElementHierarchy(element) %>
       <% end %>
     <% end %>
-	</ol>
+  </ol>
 <% else: %>
-	<p> There are no elements defined </p>
+  <p> There are no elements defined </p>
 <% end %>
