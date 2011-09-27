@@ -29,7 +29,6 @@ class exports.MainRouter extends Backbone.Router
         @_renderElement app.views.specifications.render().el
       error: =>
         @_handleError()
-        @_renderElement app.views.specifications.render().el
 
   createSpecification: ->
     @_renderElement app.views.createSpecification.render().el
@@ -42,8 +41,6 @@ class exports.MainRouter extends Backbone.Router
         @_renderElement resourcesView.render().el
       error: =>
         @_handleError()
-        resourcesView = new ResourcesView specName, specVersion
-        @_renderElement resourcesView.render().el
 
   createResource: (specName, specVersion) ->
     createResourceView = new CreateResourceView(specName, specVersion)
